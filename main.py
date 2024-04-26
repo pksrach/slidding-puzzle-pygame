@@ -143,14 +143,13 @@ def cos(event):
     youwin.place_forget()
     changetheimage.place(x=0,y=600,width=600,height=50)
 restart.bind("<Button-1>",cos)
-from playsound import playsound
+# from playsound import playsound
 introf=Frame(t)
 introf.place(x=0,y=0,width=650,height=650)
-introi=[
-    ImageTk.PhotoImage(Image.open("Images/loading.png").resize((300,300))),
-    ImageTk.PhotoImage(Image.open("Images/loading.png").resize((300,300))),
-    ImageTk.PhotoImage(Image.open("Images/loading.png").resize((300,300)))
-]
+introi=[]
+for i in range(76):
+    image_path = f"Images/loading/loading{i+1}.png"
+    introi.append(ImageTk.PhotoImage(Image.open(image_path).resize((300,300))))
 introl=Label(introf,bg="#3b53a0")
 introl.place(x=0,y=0,width=650,height=650)
 def intro():
@@ -159,12 +158,12 @@ def intro():
     # Thread(target=lambda:playsound("g/gs.wav")).start()
     while True:
         introl.config(image=introi[icmp])
-        sleep(0.2)
+        sleep(0.02)
         ic+=1
         icmp+=1
-        if icmp==3:
+        if icmp==76:
             icmp=0
-        if ic==9:
+        if ic==76:
             break
     introf.place_forget()
     t.geometry(f"650x650")
