@@ -85,6 +85,16 @@ restart.bind("<Leave>",lambda event:restart.config(image=iim))
 _a89=ImageTk.PhotoImage((Image.open("Images/a89.png")))
 a89=Label(t,image=_a89)
 a89.place(x=600,y=600,width=50,height=50)
+import subprocess
+import sys
+import os
+
+def reset_image(event):
+    #restart program
+    python = sys.executable
+    subprocess.Popen([python, "main.py"])
+    os.execl(python, python, * sys.argv)
+a89.bind("<Button-1>", reset_image)
 from tkinter import messagebox
 from tkinter import filedialog
 cti=ImageTk.PhotoImage((Image.open("Images/changetheimage.png")))
