@@ -34,6 +34,7 @@ for i in range(3):
         cmp+=1
 index=8
 from threading import Thread
+# Processing sliding path of the image
 def lol(event,h):
     global index,t,b
     if Lab[h].cget("bg")=="#242424" and (h-1==index or h+1==index or h+3==index or h-3==index):
@@ -56,10 +57,12 @@ def lol(event,h):
     lf[index].config(bg="white")
     index=h
     lf[h].config(bg="black")
+# End of Processing sliding path of the image
 yw=ImageTk.PhotoImage((Image.open("Images/youwin.png")))
 yww=ImageTk.PhotoImage((Image.open("Images/youwinwhite.png")))
 youwin=Label(t,image=yw)
 from time import sleep
+# Match the path of the image show you win
 def tim(youwin):
     w=0
     while True:
@@ -76,6 +79,8 @@ def tim(youwin):
                 return
         except:
             return
+# End of Match the path of the image show you win
+# Add restart image
 iim=ImageTk.PhotoImage((Image.open("Images/restart.png")))
 iimw=ImageTk.PhotoImage((Image.open("Images/restartwhite.png")))
 restart=Label(t,image=iim)
@@ -85,10 +90,12 @@ restart.bind("<Leave>",lambda event:restart.config(image=iim))
 _a89=ImageTk.PhotoImage((Image.open("Images/a89.png")))
 a89=Label(t,image=_a89)
 a89.place(x=600,y=600,width=50,height=50)
+# End of Add restart image
 import subprocess
 import sys
 import os
 
+# Restart the program (New game)
 def reset_image(event):
     #restart program
     python = sys.executable
@@ -97,12 +104,14 @@ def reset_image(event):
 a89.bind("<Button-1>", reset_image)
 from tkinter import messagebox
 from tkinter import filedialog
+# Change the image of the game
 cti=ImageTk.PhotoImage((Image.open("Images/changetheimage.png")))
 ctiw=ImageTk.PhotoImage((Image.open("Images/changetheimagewhite.png")))
 changetheimage=Label(t,image=cti)
 changetheimage.place(x=0,y=600,width=600,height=50)
 changetheimage.bind("<Enter>",lambda event:changetheimage.config(image=ctiw))
 changetheimage.bind("<Leave>",lambda event:changetheimage.config(image=cti))
+# Processing upload image with the same dimensions check
 def cticlick(event):
     filetypes = (
         ('Images', '*.png'),
@@ -157,6 +166,7 @@ restart.bind("<Button-1>",cos)
 introf=Frame(t)
 introf.place(x=0,y=0,width=650,height=650)
 introi=[]
+# Loading image for the intro
 for i in range(76):
     image_path = f"Images/loading/loading{i+1}.png"
     introi.append(ImageTk.PhotoImage(Image.open(image_path).resize((300,300))))
@@ -179,4 +189,5 @@ def intro():
     t.geometry(f"650x650")
     t.overrideredirect(0)
 t.after(1,lambda :Thread(target=intro).start())
+# End of loading image for the intro
 t.mainloop()
